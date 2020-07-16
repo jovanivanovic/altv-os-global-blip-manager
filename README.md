@@ -68,10 +68,11 @@ alt.emit('blips:Delete', identifier);
 alt.emit('blips:Sync', player);
 ```
 
-| Argument | Description                                   |
-| -------- | --------------------------------------------- |
-| `player` | Player handle you wish to sync the blips with |
+| Argument | Description                                    |
+| -------- | ---------------------------------------------- |
+| `player` | Player handle you wish to sync the blips with. |
 
 # Other alt:V Open Source Resources
 
 -   [Authentication by Stuyk](https://github.com/Stuyk/altv-os-auth)
+-   [Global Marker Manager by Dzeknjak](https://github.com/jovanivanovic/altv-os-global-marker-manager)
