@@ -76,3 +76,4 @@ alt.emit('blips:Sync', player);
 
 -   [Authentication by Stuyk](https://github.com/Stuyk/altv-os-auth)
 -   [Global Marker Manager by Dzeknjak](https://github.com/jovanivanovic/altv-os-global-marker-manager)
+-   [Chat by Dzeknjak](https://github.com/jovanivanovic/altv-os-chat)
