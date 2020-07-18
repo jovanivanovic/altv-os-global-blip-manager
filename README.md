@@ -16,6 +16,31 @@ https://www.buymeacoffee.com/dzeknjak
 
 This is a basic global blip manager resource. It allows you to create/destroy blips from the server-side for all players.
 
+## Installing Dependencies / Installation
+
+**I cannot stress this enough. Ensure you have NodeJS 13+ or you will have problems.**
+
+-   [NodeJS 13+](https://nodejs.org/en/download/current/)
+-   An Existing or New Gamemode
+-   General Scripting Knowledge
+
+Afterwards, simply add the name of this resource to your `server.cfg` resource section.
+
+`altv-os-global-blip-manager`
+
+Then simply clone this repository into your main server resources folder.
+
+```
+cd resources
+git clone https://github.com/jovanivanovic/altv-os-global-blip-manager
+```
+
+Ensure your `package.json` includes this property:
+
+```json
+"type": "module"
+```
+
 # Usage
 
 There's couple of events to get you started with this resource:
