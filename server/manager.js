@@ -19,10 +19,10 @@ alt.on('blips:Sync', blipsSync);
  * @param {boolean} shortRange
  */
 function blipsCreate(identifier, label, position, sprite, color, scale, shortRange = true) {
-    if(blips[identifier])throw new Error(`Blip identifier [${identifier}] is already in use.`);
+    if(blips[identifier]) throw new Error(`Blip identifier [${identifier}] is already in use.`);
 
     const blip = { identifier, label, position, sprite, color, scale, shortRange };
-    blips.push(blip);
+    blips[identifier] = blip;
 
     alt.emitClient(null, 'blips:Create', blip);
 }
