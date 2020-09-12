@@ -1,6 +1,6 @@
 import alt from 'alt-client';
 
-const blips = [];
+const blips = {};
 
 alt.onServer('blips:Create', blipsCreate);
 alt.onServer('blips:Delete', blipsDelete);
@@ -19,10 +19,7 @@ function blipsCreate(blip) {
     blipHandler.shortRange = blip.shortRange;
     blipHandler.name = blip.label;
 
-    blips.push({
-        identifier: blip.identifier,
-        handler: blipHandler
-    });
+    blips[blip.identifier] = blipHandler;
 }
 
 /**
@@ -31,9 +28,8 @@ function blipsCreate(blip) {
  * @param {any} identifier
  */
 function blipsDelete(identifier) {
-    const blipIndex = blips.findIndex(blip => blip.identifier == identifier);
-    if (blipIndex === -1) return;
-
-    blips[blipIndex].handler.destroy();
-    blips.splice(blipIndex, 1);
+    if(!blips[identifier]) return;
+    
+    blips[identifier].destroy();
+    delete blips[identifier];
 }

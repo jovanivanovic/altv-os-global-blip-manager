@@ -1,7 +1,7 @@
 /// <reference types="@altv/types-server" />
 import alt from 'alt-server';
 
-const blips = [];
+const blips = {};
 
 alt.on('blips:Create', blipsCreate);
 alt.on('blips:Delete', blipsDelete);
@@ -19,9 +19,7 @@ alt.on('blips:Sync', blipsSync);
  * @param {boolean} shortRange
  */
 function blipsCreate(identifier, label, position, sprite, color, scale, shortRange = true) {
-    if (blips.findIndex(blip => blip.identifier == identifier) !== -1) {
-        throw new Error(`Blip identifier [${identifier}] is already in use.`);
-    }
+    if(blips[identifier])throw new Error(`Blip identifier [${identifier}] is already in use.`);
 
     const blip = { identifier, label, position, sprite, color, scale, shortRange };
     blips.push(blip);
@@ -35,10 +33,9 @@ function blipsCreate(identifier, label, position, sprite, color, scale, shortRan
  * @param {any} identifier
  */
 function blipsDelete(identifier) {
-    const blipIndex = blips.findIndex(blip => blip.identifier == identifier);
-    if (blipIndex === -1) return;
+    if(!blips[identifier]) return;
 
-    blips.splice(blipIndex, 1);
+    delete blips[identifier];
     alt.emitClient(null, 'blips:Delete', identifier);
 }
 
@@ -48,7 +45,8 @@ function blipsDelete(identifier) {
  * @param {alt.Player} player
  */
 function blipsSync(player) {
-    for (const blip of blips) {
+    for (const blipId in blips) {
+        const blip = blips[blipId];
         alt.emitClient(player, 'blips:Create', blip);
     }
 }
